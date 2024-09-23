@@ -10,7 +10,21 @@ dotenv.config();
 const app = express();
 
 connectDB();
-app.use(cors());
+
+const originLocal = process.env.ORIGIN_DEV;
+const originProd = process.env.ORIGIN_PROD;
+
+const corsOptions = [
+  {
+    origin: `${originLocal}`,
+    optionsSuccessStatus: 200,
+  },
+  {
+    origin: `${originProd}`,
+    optionsSuccessStatus: 200,
+  },
+];
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.get("/", (req, res) => {
