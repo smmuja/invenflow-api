@@ -3,17 +3,18 @@ import { connectDB } from "./src/config/db.js";
 import dotenv from "dotenv";
 import productRoutes from "./src/routes/productRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 
+connectDB();
+app.use(cors());
 app.use(express.json());
 
-connectDB();
-
 app.get("/", (req, res) => {
-  res.send("Hello from Bootcamp Day 2");
+  res.send("Welcome to Invenflow API");
 });
 
 app.use("/api/products", productRoutes);
