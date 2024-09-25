@@ -2,18 +2,18 @@ import bcrypt from "bcryptjs";
 import User from "../models/Users.js";
 import jwt from "jsonwebtoken";
 
-export const registerUser = async ({ name, email, password }) => {
+export const registerUser = async ({ username, email, password }) => {
   const userExist = await User.findOne({ email });
 
   if (userExist) {
     throw new Error("User already exist");
   }
 
-  const user = await User.create({ name, email, password });
+  const user = await User.create({ username, email, password });
 
   return {
     id: user._id,
-    name: user.name,
+    username: user.username,
     email: user.email,
   };
 };
