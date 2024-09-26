@@ -28,7 +28,8 @@ export const getProductDetail = async (req, res) => {
 };
 
 export const addProduct = async (req, res) => {
-  const product = req.body;
+  const userId = req.user.id;
+  const product = { ...req.body, user_id: userId };
 
   try {
     const newProduct = await createProduct(product);

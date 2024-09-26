@@ -1,6 +1,11 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const productSchema = new mongoose.Schema({
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   name: {
     type: String,
     required: [true, "Product name is required"],

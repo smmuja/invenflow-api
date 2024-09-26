@@ -1,11 +1,17 @@
 import Product from "../models/Product.js";
 
 export const getAllProducts = async () => {
-  return await Product.find({});
+  return await Product.find().populate({
+    path: "user_id",
+    select: "_id username email",
+  });
 };
 
 export const getProductById = async (id) => {
-  return await Product.findById(id);
+  return await Product.findById(id).populate({
+    path: "user_id",
+    select: "_id username email",
+  });
 };
 
 export const createProduct = async (product) => {
