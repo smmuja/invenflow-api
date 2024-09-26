@@ -4,6 +4,7 @@ import dotenv from "dotenv";
 import productRoutes from "./src/routes/productRoutes.js";
 import authRoutes from "./src/routes/authRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
+import userAccountRoutes from "./src/routes/userAccountRoutes.js";
 import cors from "cors";
 
 dotenv.config();
@@ -34,6 +35,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/user-accounts", userAccountRoutes);
 app.use("/api/products", productRoutes);
 
 app.listen(3000, () => {
