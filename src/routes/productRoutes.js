@@ -7,6 +7,7 @@ import {
   deleteProduct,
 } from "../controllers/productController.js";
 import authMiddleware from "../middleware/authMiddleware.js";
+import productOwnershipMiddleware from "../middleware/productOwnershipMiddleware.js";
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.get("/", getProducts);
 router.get("/:id", getProductDetail);
 
 router.post("/", addProduct);
-router.put("/:id", updateProduct);
-router.delete("/:id", deleteProduct);
+router.put("/:id", productOwnershipMiddleware, updateProduct);
+router.delete("/:id", productOwnershipMiddleware, deleteProduct);
 
 export default router;
