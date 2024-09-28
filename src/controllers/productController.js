@@ -4,12 +4,27 @@ import {
   createProduct,
   removeProductById,
   updateProductById,
+  getProductsByUsername,
 } from "../services/productServices.js";
 
 export const getProducts = async (req, res) => {
   try {
     const products = await getAllProducts();
     res.status(200).json({ data: products, message: "Get products" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getUserProducts = async (req, res) => {
+  const { username } = req.params;
+
+  try {
+    const products = await getProductsByUsername(username);
+    res.status(200).json({
+      data: products,
+      message: "Successfully get products by username",
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
