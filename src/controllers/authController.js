@@ -14,8 +14,9 @@ export const login = async (req, res) => {
   const userPayload = req.body;
 
   try {
-    const token = await loginUser(userPayload);
-    res.status(200).json({ token, message: "User logged in" });
+    const { token, user } = await loginUser(userPayload);
+
+    res.status(200).json({ token, user, message: "User logged in" });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
