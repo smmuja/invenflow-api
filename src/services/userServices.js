@@ -2,17 +2,13 @@ import UserAccount from "../models/UserAccount.js";
 import User from "../models/Users.js";
 
 export const getAllUsers = async () => {
-  return await User.find().populate("user_info");
-
-  // const users = await User.find().populate("userDetail");
-  // return users.map(user => {
-  //   user.userDetail = user.userDetail ? user.userDetail[0] : null; // Extract the first userDetail or set it to null
-  //   return user;
-  // });
+  return await User.find({}, { password: 0 }).populate("user_info");
 };
 
 export const getUserByUsername = async (username) => {
-  const user = await User.findOne({ username }).populate("user_info");
+  const user = await User.findOne({ username }, { password: 0 }).populate(
+    "user_info"
+  );
 
   if (!user) {
     throw new Error("User not found");
