@@ -1,3 +1,4 @@
+import Product from "../models/Product.js";
 import UserAccount from "../models/UserAccount.js";
 import User from "../models/Users.js";
 
@@ -28,6 +29,7 @@ export const deleteUserByUsername = async (username) => {
     throw new Error(`User not found with ${username} username`);
   }
   await UserAccount.deleteMany({ user_id: user._id });
+  await Product.deleteMany({ user_id: user._id });
   // await user.remove();
   return user;
 };
