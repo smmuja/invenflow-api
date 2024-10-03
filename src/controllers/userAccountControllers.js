@@ -1,5 +1,6 @@
 import {
   getAllUserAccount,
+  getUserAccountByUsername,
   updateUserAccountByUsername,
 } from "../services/userAccountServices.js";
 import User from "../models/Users.js";
@@ -11,6 +12,19 @@ export const getUserAccounts = async (req, res) => {
     res.status(200).json({
       data: userAccounts,
       message: "User accounts retrieved successfully",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const getUserAccountDetail = async (req, res) => {
+  const { username } = req.params;
+  try {
+    const userAccount = await getUserAccountByUsername(username);
+    res.status(200).json({
+      data: userAccount,
+      message: "User account detail retrieved successfully",
     });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -30,7 +44,6 @@ export const addUserAccount = async (req, res) => {
     await userAccount.save();
 
     const user = await User.findById(userId).populate("user_info");
-    // user.userDetail.push(userDetail);
     await user.save();
 
     res.status(200).json({

@@ -5,8 +5,14 @@ export const getAllUserAccount = async () => {
   return await UserAccount.find({});
 };
 
-export const getUserAccountById = async (id) => {
-  return await UserAccount.findById(id);
+export const getUserAccountByUsername = async (username) => {
+  const user = await User.findOne({ username }).populate("user_info");
+
+  if (!user || !user.user_info) {
+    throw new Error("User or user account not found");
+  }
+
+  return await UserAccount.findOne({ user_id: user._id });
 };
 
 export const createUserAccount = async (UserAccount) => {
@@ -29,8 +35,6 @@ export const updateUserAccountByUsername = async (
       new: true,
     }
   );
-
-  // return user.user_info;
 };
 
 export const removeUserAccountById = async (id) => {
