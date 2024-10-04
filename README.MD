@@ -7,6 +7,11 @@
 - ReactJS
 - NodeJS
 
+## API DOCUMENTATION : POSTMAN
+
+https://documenter.getpostman.com/view/32976138/2sAXxLCuae  
+![Api Documentation](/src/assets/docs/postman-documentation.png)
+
 ## API ENDPOINTS
 
 - users/auth
@@ -29,7 +34,3 @@
 `npm run dev` or  
 `yarn dev` or  
 `node app.js`
-
-**Part of assignment from Tech Genius Bootcamp Full Stack Web Development by Himpunan Teknik Informatika Universitas Negeri Surabaya**
-
-![image](/src/assets/docs/xproject-bootcamp.jpeg)
