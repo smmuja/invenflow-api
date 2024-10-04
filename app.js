@@ -14,7 +14,8 @@ const app = express();
 connectDB();
 
 const originLocal = process.env.ORIGIN_DEV;
-const originProd = process.env.ORIGIN_PROD;
+const originProd1 = process.env.ORIGIN_PROD_1;
+const originProd2 = process.env.ORIGIN_PROD_2;
 
 const corsOptions = [
   {
@@ -22,7 +23,11 @@ const corsOptions = [
     optionsSuccessStatus: 200,
   },
   {
-    origin: `${originProd}`,
+    origin: `${originProd1}`,
+    optionsSuccessStatus: 200,
+  },
+  {
+    origin: `${originProd2}`,
     optionsSuccessStatus: 200,
   },
 ];
